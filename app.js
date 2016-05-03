@@ -1,10 +1,7 @@
 'use strict';
 
 var env = process.env.NODE_ENV || 'dev',
-    config = require('./server/config/env')[env];
-
-
-
+  config = require('./server/config/env')[env];
 
 var app = require('./server/config/express')();
 
