@@ -25,7 +25,12 @@ module.exports = function () {
   app.use(bodyParser.json());
   app.use(methodOverride());
   //jwt
-  require('../routes/mainRoutes.js')(app);
+    //app.route('/*')
+     // .get(function(req,res){
+      //  res.sendFile('index.html', { root: './dist' });
+
+
+  //require('../routes/mainRoutes.js')(app);
   return app;
 
 };
