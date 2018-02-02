@@ -17,7 +17,8 @@ module.exports = function() {
     if (process.env.NODE_ENV === 'dev') {
         app.use(morgan('dev'));
     }
-    /*For websites*/
+    /*For serving static content*/
+
     //app.use('/', express.static('./public'));
     app.use(bodyParser.urlencoded({
         extended: false
@@ -26,12 +27,13 @@ module.exports = function() {
     app.use(methodOverride());
 
 
-    //FOR ANGULAR APPS
-    //app.route('/*')
-    // .get(function(req,res){
-    //  res.sendFile('index.html', { root: './dist' });
+    /* FOR ANGULAR APPS */
 
-    require('./main/mainRoutes.js')(app);
+    /* app.route('/*')
+    .get(function(req,res){
+    res.sendFile('index.html', { root: './dist' }); */
+
+    require('./main/main.routes')(app);
     return app;
 
 };

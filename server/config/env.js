@@ -5,7 +5,7 @@ module.exports = {
   dev: {
     db: 'mongodb://localhost/mydb',
     roothPath: roothPath,
-    secret: 'sivemo14031992',
+    secret: 'SECRET',
     port: process.env.PORT || 8080
   }
 

@@ -1,12 +1,12 @@
 'use strict';
 var express = require('express');
-var main = require('./mainCtrl');
+var main = require('./main.ctrl');
 //
 var mainRouter = express.Router();
 module.exports = function(app) {
 
     mainRouter
-        .get('/holaMundo', main.holaMundo);
+        .get('/', main.helloWorld);
 
 
     app.use('/', mainRouter);
