@@ -1,14 +1,15 @@
 /* global config */
 var mongoose = require("mongoose"),
   env = process.env.NODE_ENV || "dev";
-config = require("./config/env.js")[env];
+config = require("../config/env.js")[env];
 //Conexión
-var db = new Promise((_,reject) => {
-  mongoose.connect(config.db, function(err) {
-    if (err) {
-      reject(new Error("Can't connect to Mongo"))
-    } else {
-      console.log("Connected to Mongo");
-    }
-  });
-});
+let db = mongoose.createConnection(config.db.url, /* {auth: config.db.auth} */);
+
+db.on("open",()=> {
+     console.log("Conexión a MongoDB!");
+})
+db.on("error", ()=> {
+    console.log("No se puedo conectar");
+})
+
+exports.db = db;

@@ -3,7 +3,7 @@ var path = require('path'),
 
 module.exports = {
   dev: {
-    db: 'mongodb://localhost/mydb',
+    db: {url: 'mongodb://localhost/mydb'},
     roothPath: roothPath,
     secret: 'SECRET',
     port: process.env.PORT || 8080

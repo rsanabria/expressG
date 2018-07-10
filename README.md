@@ -1,5 +1,5 @@
 # ExpressG
-*Version 0.5*
+*Version 1.1*
 Minimal setup for express apps.
 
   - [Mongoose](http://mongoosejs.com/)
