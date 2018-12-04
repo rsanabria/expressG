@@ -1,15 +1,16 @@
-/* global config */
-var mongoose = require("mongoose"),
-  env = process.env.NODE_ENV || "dev";
-config = require("../config/env.js")[env];
-//Conexión
-let db = mongoose.createConnection(config.db.url, /* {auth: config.db.auth} */);
+/* Database Connections */
+const mongoose = require('mongoose')
+const env = process.env.NODE_ENV || 'dev'
+const config = require('../config/env.js')[env]
 
-db.on("open",()=> {
-     console.log("Conexión a MongoDB!");
+/* Connection */
+let db = mongoose.createConnection(config.db.url)
+
+db.on('open', () => {
+  console.log('Conexión a MongoDB!')
 })
-db.on("error", ()=> {
-    console.log("No se puedo conectar");
+db.on('error', () => {
+  console.log('No se puedo conectar')
 })
 
-exports.db = db;
+exports.db = db

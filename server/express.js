@@ -1,39 +1,28 @@
-'use strict';
+const express = require('express')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+const morgan = require('morgan')
 
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    methodOverride = require('method-override'),
-    morgan = require('morgan'),
-    env = process.env.NODE_ENV || 'dev',
-    config = require('./config/env.js')[env],
-    db = require('./db.js');
+module.exports = () => {
+  /* Initialize express app */
+  var app = express()
 
-module.exports = function() {
+  /* Configuration */
+  if (process.env.NODE_ENV === 'dev') {
+    app.use(morgan('dev'))
+  }
+  /*  For serving static content */
+  // app.use('/', express.static('./public'))
 
-    //Initialize express app
-    var app = express();
+  app.use(bodyParser.urlencoded({
+    extended: false
+  }))
+  app.use(bodyParser.json())
+  app.use(methodOverride())
+  /* app.route('/*')
+  .get(function(req,res){
+  res.sendFile('index.html', { root: './dist' }); */
 
-    //Configuration
-    if (process.env.NODE_ENV === 'dev') {
-        app.use(morgan('dev'));
-    }
-    /*For serving static content*/
-
-    //app.use('/', express.static('./public'));
-    app.use(bodyParser.urlencoded({
-        extended: false
-    }));
-    app.use(bodyParser.json());
-    app.use(methodOverride());
-
-
-    /* FOR ANGULAR APPS */
-
-    /* app.route('/*')
-    .get(function(req,res){
-    res.sendFile('index.html', { root: './dist' }); */
-
-    require('./main/main.routes')(app);
-    return app;
-
-};
+  require('./main/main.routes')(app)
+  return app
+}
